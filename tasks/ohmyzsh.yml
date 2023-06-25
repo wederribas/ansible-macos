@@ -1,0 +1,24 @@
+- name: Check if Oh-my-zsh is already installed
+  stat:
+    path: $HOME/.oh-my-zsh
+  register: ohmyzsh_folder_check
+  tags:
+    - zsh
+- name: Install Oh-my-zsh
+  shell: bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  when: not ohmyzsh_folder_check.stat.exists
+  tags:
+    - zsh
+- name: Check if Oh-my-zsh autosuggestion is already installed
+  stat:
+    path: $HOME/.oh-my-zsh/plugins/zsh-autosuggestions
+  register: ohmyzsh_autosuggestion_folder_check
+  tags:
+    - zsh
+- name: Install Oh-my-zsh autosuggestion plugin
+  ansible.builtin.git:
+    repo: 'https://github.com/zsh-users/zsh-autosuggestions.git'
+    dest: ~/.oh-my-zsh/plugins/zsh-autosuggestions
+  when: not ohmyzsh_autosuggestion_folder_check.stat.exists
+  tags:
+    - zsh

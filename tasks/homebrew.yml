@@ -1,0 +1,41 @@
+- name: Check if homebrew is already installed
+  stat:
+    path: /opt/homebrew/bin/brew
+  register: homebrew_folder_check
+  tags:
+    - homebrew
+- name: Export Homebrew environment variables
+  shell: |
+    export HOMEBREW_NO_INSTALL_FROM_API=1
+    export NONINTERACTIVE=1
+- name: Install homebrew
+  shell: /bin/zsh -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+  when: not homebrew_folder_check.stat.exists
+  tags:
+    - homebrew
+- name: Install homebrew formulas
+  community.general.homebrew:
+    name: "{{ homebrew_formulas }}"
+    state: present
+  tags:
+    - homebrew
+- name: Install homebrew casks
+  community.general.homebrew_cask:
+    name: "{{ item }}"
+    install_options: 'debug,appdir=/Applications'
+    accept_external_apps: true
+    state: present
+  loop: "{{ homebrew_casks }}"
+  tags:
+    - homebrew
+- name: Update and upgrade homebrew formulas
+  community.general.homebrew:
+    update_homebrew: true
+    upgrade_all: true
+  tags:
+    - homebrew
+- name: Update and upgrade homebrew casks
+  community.general.homebrew_cask:
+    upgrade_all: true
+  tags:
+    - homebrew

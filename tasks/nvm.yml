@@ -1,0 +1,16 @@
+- name: Check nvm is installed
+  stat:
+    path: /opt/homebrew/opt/nvm
+  register: nvm_check
+  tags:
+    - nvm
+- name: Install Node version {{ node_version }}
+  shell: zsh -c "$(nvm install {{ node_version }})"
+  when: nvm_check.stat.exists
+  tags:
+    - nvm
+- name: Set global Node version to {{ node_version }}
+  shell: zsh -c "$(nvm use {{ node_version }})"
+  when: nvm_check.stat.exists
+  tags:
+    - nvm

@@ -1,0 +1,15 @@
+- name: Setup your battle development machine 
+  hosts: all
+  vars_files:
+      - default.config.yml
+  pre_tasks:
+    - name: Include playbook configuration
+      include_vars: "{{ item }}"
+      with_fileglob:
+        - "{{ playbook_dir }}/config.yml"
+      tags: ["always"]
+  tasks:
+    - import_tasks: tasks/ohmyzsh.yml
+    - import_tasks: tasks/homebrew.yml
+    - import_tasks: tasks/pyenv.yml
+    - import_tasks: tasks/nvm.yml

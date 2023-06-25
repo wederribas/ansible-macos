@@ -1,0 +1,13 @@
+- name: Check Pyenv is installed
+  ansible.builtin.command: which pyenv
+  register: pyenv_check
+  ignore_errors: true
+  tags:
+    - pyenv
+- name: Install Python version {{ python_version }}
+  ansible.builtin.shell: |
+    pyenv install {{ python_version }}
+    pyenv global {{ python_version }}
+  when: pyenv_check.rc == 0
+  tags:
+    - pyenv
