@@ -11,3 +11,4 @@
   when: pyenv_check.rc == 0
   tags:
     - pyenv
+

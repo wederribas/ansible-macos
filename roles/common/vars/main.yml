@@ -1,0 +1,35 @@
+source_ssh_key: "./files/ssh/github_personal_ed25519"
+dest_ssh_key: "{{ lookup('env', 'HOME') }}/.ssh/github_personal_ed25519"
+
+homebrew_formulas:
+  - autojump
+  - awscli
+  - docker-compose
+  - fzf
+  - jq
+  - neovim
+  - nvm
+  - pyenv
+  - pyenv-virtualenv
+  - ripgrep
+  - stow
+  - tmux
+  - tree
+  - terraform
+  - wget
+  - yarn
+  - zlib
+
+homebrew_casks:
+  - 1password
+  - alfred
+  - arc
+  - docker
+  - iterm2
+  - meld
+  - postman
+  - obsidian
+  - tableplus
+  - visual-studio-code
+  - warp
+

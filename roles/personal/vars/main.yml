@@ -1,0 +1,5 @@
+source_ssh_config: "./files/ssh/config"
+dest_ssh_config: "{{ lookup('env', 'HOME') }}/.ssh/config"
+
+code_dir: "{{ lookup('env', 'HOME') }}/Documents/Code"
+

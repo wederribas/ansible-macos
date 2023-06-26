@@ -22,3 +22,4 @@
   when: not ohmyzsh_autosuggestion_folder_check.stat.exists
   tags:
     - zsh
+

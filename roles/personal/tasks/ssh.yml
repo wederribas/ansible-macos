@@ -1,0 +1,17 @@
+- name: Ensure .ssh directory exists.
+  file:
+    dest: "{{ dest_ssh_config | dirname }}"
+    mode: 0700
+    state: directory
+  tags:
+    - dotfiles
+    - ssh
+- name: Install ssh config
+  copy:
+    src: "{{ source_ssh_config }}"
+    dest: "{{ dest_ssh_config }}"
+    mode: 0644
+  tags:
+    - dotfiles
+    - ssh
+

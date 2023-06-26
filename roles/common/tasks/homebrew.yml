@@ -4,21 +4,24 @@
   register: homebrew_folder_check
   tags:
     - homebrew
+    - dotfiles
 - name: Export Homebrew environment variables
   shell: |
     export HOMEBREW_NO_INSTALL_FROM_API=1
     export NONINTERACTIVE=1
 - name: Install homebrew
-  shell: /bin/zsh -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+  shell: CI=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
   when: not homebrew_folder_check.stat.exists
   tags:
     - homebrew
+    - dotfiles
 - name: Install homebrew formulas
   community.general.homebrew:
     name: "{{ homebrew_formulas }}"
     state: present
   tags:
     - homebrew
+    - dotfiles
 - name: Install homebrew casks
   community.general.homebrew_cask:
     name: "{{ item }}"
@@ -39,3 +42,4 @@
     upgrade_all: true
   tags:
     - homebrew
+

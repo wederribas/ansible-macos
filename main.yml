@@ -1,15 +1,25 @@
 - name: Setup your battle development machine 
   hosts: all
+  vars:
+    laptop_type: common
   vars_files:
-      - default.config.yml
+    - ./vars/vars_{{ laptop_type }}.yml
   pre_tasks:
-    - name: Include playbook configuration
+    - name: Include custom playbook configuration, if present
       include_vars: "{{ item }}"
       with_fileglob:
         - "{{ playbook_dir }}/config.yml"
       tags: ["always"]
   tasks:
-    - import_tasks: tasks/ohmyzsh.yml
-    - import_tasks: tasks/homebrew.yml
-    - import_tasks: tasks/pyenv.yml
-    - import_tasks: tasks/nvm.yml
+    - import_role:
+        name: common
+      tags: ["common"]
+    - import_role:
+        name: personal
+      tags: ["personal"]
+      when: laptop_type == "personal"
+    - import_role:
+        name: adsk
+      tags: ["adsk"]
+      when: laptop_type == "adsk"
+

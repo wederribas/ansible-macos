@@ -1,0 +1,7 @@
+- import_tasks: ssh.yml
+- import_tasks: homebrew.yml
+- import_tasks: ohmyzsh.yml
+- import_tasks: dotfiles.yml
+- import_tasks: pyenv.yml
+- import_tasks: nvm.yml
+
