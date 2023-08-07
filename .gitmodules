@@ -1,0 +1,3 @@
+[submodule "roles/adsk"]
+	path = roles/adsk
+	url = git@git.autodesk.com:ribasw/adsk-ansible-role.git
