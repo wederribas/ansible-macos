@@ -25,6 +25,7 @@ homebrew_casks:
   - 1password
   - alfred
   - arc
+  - google-chrome
   - docker
   - iterm2
   - meld
