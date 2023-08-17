@@ -12,7 +12,7 @@
   tags:
     - nvm
 - name: Set global Node version to {{ node_version }}
-  shell: . ~/.zshrc && nvm use {{ node_version }}
+  shell: . ~/.zshrc && nvm alias default {{ node_version }}
   when: nvm_check.stat.exists
   args:
     executable: /bin/zsh
