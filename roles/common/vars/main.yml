@@ -6,6 +6,7 @@ homebrew_formulas:
   - awscli
   - docker-compose
   - fzf
+  - golang
   - jenv
   - jq
   - neovim
