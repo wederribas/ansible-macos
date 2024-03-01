@@ -30,6 +30,7 @@ homebrew_casks:
   - docker
   - iterm2
   - meld
+  - nextcloud
   - postman
   - obsidian
   - tableplus
