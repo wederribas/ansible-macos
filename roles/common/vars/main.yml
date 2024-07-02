@@ -7,6 +7,8 @@ homebrew_formulas:
   - docker-compose
   - fzf
   - golang
+  - gh
+  - gpg
   - jenv
   - jq
   - neovim
@@ -34,6 +36,7 @@ homebrew_casks:
   - postman
   - obsidian
   - tableplus
+  - temurin@21
   - visual-studio-code
   - warp
   - firefox
