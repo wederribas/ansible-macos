@@ -4,6 +4,7 @@ dest_ssh_key: "{{ lookup('env', 'HOME') }}/.ssh/github_personal_ed25519"
 homebrew_formulas:
   - autojump
   - awscli
+  - cosign
   - docker-compose
   - fzf
   - golang
@@ -19,8 +20,7 @@ homebrew_formulas:
   - stow
   - tmux
   - tree
-  - terraform
-  - terragrunt
+  - tenv
   - wget
   - yarn
   - zlib
